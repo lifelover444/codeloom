@@ -1,0 +1,3 @@
+# This needs to sync with codeloom/help_pats.py
+
+global-exclude .DS_Store
