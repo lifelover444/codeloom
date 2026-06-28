@@ -336,28 +336,28 @@ def get_parser(default_config_files, git_root):
     )
     group.add_argument(
         "--user-input-color",
-        default="#00cc00",
-        help="Set the color for user input (default: #00cc00)",
+        default="#F2B84B",
+        help="Set the color for user input (default: #F2B84B)",
     )
     group.add_argument(
         "--tool-output-color",
-        default=None,
-        help="Set the color for tool output (default: None)",
+        default="#8A8F98",
+        help="Set the color for tool output (default: #8A8F98)",
     )
     group.add_argument(
         "--tool-error-color",
-        default="#FF2222",
-        help="Set the color for tool error messages (default: #FF2222)",
+        default="#FF5C5C",
+        help="Set the color for tool error messages (default: #FF5C5C)",
     )
     group.add_argument(
         "--tool-warning-color",
-        default="#FFA500",
-        help="Set the color for tool warning messages (default: #FFA500)",
+        default="#F59E0B",
+        help="Set the color for tool warning messages (default: #F59E0B)",
     )
     group.add_argument(
         "--assistant-output-color",
-        default="#0088ff",
-        help="Set the color for assistant output (default: #0088ff)",
+        default="#D8D3C7",
+        help="Set the color for assistant output (default: #D8D3C7)",
     )
     group.add_argument(
         "--completion-menu-color",
@@ -394,9 +394,9 @@ def get_parser(default_config_files, git_root):
     )
     group.add_argument(
         "--code-theme",
-        default="default",
+        default="gruvbox-dark",
         help=(
-            "Set the markdown code theme (default: default, other options include monokai,"
+            "Set the markdown code theme (default: gruvbox-dark, other options include monokai,"
             " solarized-dark, solarized-light, or a Pygments builtin style,"
             " see https://pygments.org/styles for available themes)"
         ),

@@ -530,11 +530,12 @@ def main(argv=None, input=None, output=None, force_git_root=None, return_coder=F
         models.request_timeout = args.timeout
 
     if args.dark_mode:
-        args.user_input_color = "#32FF32"
-        args.tool_error_color = "#FF3333"
-        args.tool_warning_color = "#FFFF00"
-        args.assistant_output_color = "#00FFFF"
-        args.code_theme = "monokai"
+        args.user_input_color = "#F2B84B"
+        args.tool_output_color = "#8A8F98"
+        args.tool_error_color = "#FF5C5C"
+        args.tool_warning_color = "#F59E0B"
+        args.assistant_output_color = "#D8D3C7"
+        args.code_theme = "gruvbox-dark"
 
     if args.light_mode:
         args.user_input_color = "green"

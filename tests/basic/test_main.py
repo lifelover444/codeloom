@@ -391,6 +391,20 @@ class TestMain(TestCase):
         args, kwargs = MockInputOutput.call_args
         self.assertEqual(args[1], None)
 
+    def test_default_output_colors_use_graphite_amber(self):
+        with patch("codeloom.main.InputOutput") as MockInputOutput:
+            MockInputOutput.return_value.get_input.return_value = None
+            main(["--no-git", "--exit"], input=DummyInput(), output=DummyOutput())
+
+            MockInputOutput.assert_called_once()
+            _, kwargs = MockInputOutput.call_args
+            self.assertEqual(kwargs["user_input_color"], "#F2B84B")
+            self.assertEqual(kwargs["tool_output_color"], "#8A8F98")
+            self.assertEqual(kwargs["tool_warning_color"], "#F59E0B")
+            self.assertEqual(kwargs["tool_error_color"], "#FF5C5C")
+            self.assertEqual(kwargs["assistant_output_color"], "#D8D3C7")
+            self.assertEqual(kwargs["code_theme"], "gruvbox-dark")
+
     def test_dark_mode_sets_code_theme(self):
         # Mock InputOutput to capture the configuration
         with patch("codeloom.main.InputOutput") as MockInputOutput:
@@ -400,7 +414,12 @@ class TestMain(TestCase):
             MockInputOutput.assert_called_once()
             # Check if the code_theme setting is for dark mode
             _, kwargs = MockInputOutput.call_args
-            self.assertEqual(kwargs["code_theme"], "monokai")
+            self.assertEqual(kwargs["user_input_color"], "#F2B84B")
+            self.assertEqual(kwargs["tool_output_color"], "#8A8F98")
+            self.assertEqual(kwargs["tool_warning_color"], "#F59E0B")
+            self.assertEqual(kwargs["tool_error_color"], "#FF5C5C")
+            self.assertEqual(kwargs["assistant_output_color"], "#D8D3C7")
+            self.assertEqual(kwargs["code_theme"], "gruvbox-dark")
 
     def test_light_mode_sets_code_theme(self):
         # Mock InputOutput to capture the configuration
@@ -431,7 +450,7 @@ class TestMain(TestCase):
             MockInputOutput.assert_called_once()
             # Check if the color settings are for dark mode
             _, kwargs = MockInputOutput.call_args
-            self.assertEqual(kwargs["code_theme"], "monokai")
+            self.assertEqual(kwargs["code_theme"], "gruvbox-dark")
 
     def test_default_env_file_sets_automatic_variable(self):
         self.create_env_file(".env", "CODELOOM_DARK_MODE=True")
@@ -443,7 +462,7 @@ class TestMain(TestCase):
             MockInputOutput.assert_called_once()
             # Check if the color settings are for dark mode
             _, kwargs = MockInputOutput.call_args
-            self.assertEqual(kwargs["code_theme"], "monokai")
+            self.assertEqual(kwargs["code_theme"], "gruvbox-dark")
 
     def test_false_vals_in_env_file(self):
         self.create_env_file(".env", "CODELOOM_SHOW_DIFFS=off")
